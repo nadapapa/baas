@@ -26,7 +26,7 @@ export class BoardComponent implements OnInit {
   private groupedVotes;
 
   constructor(private BoardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
-              private eventService: EventService, private voteService: VoteService, public afAuth: AngularFireAuth) {
+              private EventService: EventService, private VoteService: VoteService, public afAuth: AngularFireAuth) {
 
     afAuth.authState.map(user => {
       this.userEmail = user.email;
@@ -52,12 +52,8 @@ export class BoardComponent implements OnInit {
   }
 
   archiveBt(id: number) {
-    this.voteService.archiveVotesByBoard(id);
+    this.VoteService.archiveVotesByBoard(id);
   }
 
-  isAdcmin() {
-    const filter = this.board.users.filter( item => (item.email == this.userEmail && item.is_admin == true) );
-    return filter.length === 1;
-  }
 
 }
