@@ -15,7 +15,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule, MdListModule, MdCardModule} from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -25,6 +24,7 @@ import { environment } from '../environments/environment';
 
 import { BoardService } from './board.service';
 import { VoteComponent } from './vote/vote.component';
+import { EventService } from './event.service';
 
 const appRoutes: Routes = [
   { path: 'test', component: TestComponent },
@@ -62,7 +62,7 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [BoardService],
+  providers: [BoardService, EventService],
   bootstrap: [AppComponent],
   entryComponents: [VoteComponent]
 })

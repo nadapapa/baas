@@ -6,6 +6,7 @@ import { BoardService } from '../board.service';
 
 import 'rxjs/add/operator/switchMap';
 import { VoteComponent } from '../vote/vote.component';
+import {EventService} from '../event.service';
 
 @Component({
   selector: 'app-board',
@@ -15,9 +16,12 @@ import { VoteComponent } from '../vote/vote.component';
 export class BoardComponent implements OnInit {
   private board;
 
-  constructor(private BoardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog) { }
+  constructor(private BoardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
+              private eventService: EventService) { }
 
   ngOnInit(): void {
+    this.eventService.emitChange({title: 'Felhasználók'});
+
     this.route.params
         .switchMap((params: Params) => this.BoardService.getBoard(params['id']))
         .subscribe(data => this.board = data);
