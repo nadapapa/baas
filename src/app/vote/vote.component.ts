@@ -12,4 +12,9 @@ export class VoteComponent implements OnInit {
   ngOnInit() {
     console.log(this.data);
   }
+
+  private castAVote(index) {
+
+    console.log(index);
+  }
 }
