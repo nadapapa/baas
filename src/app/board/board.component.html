@@ -2,6 +2,9 @@
   <div *ngFor="let user of board?.users" (click)="openVote(user.email)">
     <md-list-item>
       {{user.name}}
+      <div>
+        <div >{{ board.categories|json}}</div>
+      </div>
     </md-list-item>
     <md-divider></md-divider>
   </div>

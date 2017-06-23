@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MdDialog } from '@angular/material';
 
 import { BoardService } from '../board.service';
 
-import 'rxjs/add/operator/switchMap';
 import { VoteComponent } from '../vote/vote.component';
 import {EventService} from '../event.service';
+import {VoteService} from '../vote.service';
+
 
 @Component({
   selector: 'app-board',
@@ -15,16 +16,21 @@ import {EventService} from '../event.service';
 })
 export class BoardComponent implements OnInit {
   private board;
+  private votes;
+  private groupedVotes;
 
   constructor(private BoardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
-              private eventService: EventService) { }
+              private EventService: EventService, private VoteService: VoteService) { }
 
   ngOnInit(): void {
-    this.eventService.emitChange({title: 'Felhasználók'});
+    this.EventService.emitChange({title: 'Felhasználók'});
 
     this.route.params
-        .switchMap((params: Params) => this.BoardService.getBoard(params['id']))
-        .subscribe(data => this.board = data);
+        .subscribe((params: Params) => {
+          this.BoardService.getBoard(params['id']).subscribe(data => this.board = data);
+          this.VoteService.getVotes(params['id']).subscribe(data => this.votes = data);
+          this.VoteService.getGroupedVotes(params['id']).subscribe(data => this.groupedVotes = data);
+        });
   }
 
   private openVote(email: string) {
