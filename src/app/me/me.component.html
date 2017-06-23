@@ -1,3 +1,11 @@
-<p>
-  me works!
-</p>
+<md-list>
+  <div *ngFor="let vote of votes">
+    <md-list-item [style.background]="boardItems[vote.board]['categories'][vote.category].color">
+      <h3 md-line>{{ boardItems[vote.board].name}}</h3>
+      <h4 md-line>{{ boardItems[vote.board]['categories'][vote.category].name}}</h4>
+      <span>{{ getUserName(vote)}}</span>
+      <md-icon>{{ getDirection(vote)}}</md-icon>
+    </md-list-item>
+    <md-divider></md-divider>
+  </div>
+</md-list>
