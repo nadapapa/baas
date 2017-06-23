@@ -1,3 +1,6 @@
 <p>
   board works!
 </p>
+<md-list>
+  <md-list-item *ngFor="let user of board?.users" (click)="openVote(user.email)"> {{user.name}} </md-list-item>
+</md-list>

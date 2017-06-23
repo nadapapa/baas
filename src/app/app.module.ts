@@ -13,7 +13,7 @@ import { BoardComponent } from './board/board.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule} from '@angular/material';
+import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule} from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { AngularFireModule } from 'angularfire2';
@@ -24,6 +24,7 @@ import { TestComponent } from './test/test.component';
 import { environment } from '../environments/environment';
 
 import { BoardService } from './board.service';
+import { VoteComponent } from './vote/vote.component';
 
 const appRoutes: Routes = [
   { path: 'test', component: TestComponent },
@@ -47,22 +48,22 @@ const appRoutes: Routes = [
     BoardListComponent,
     BoardComponent,
     PageNotFoundComponent,
-    TestComponent
+    TestComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule,
+    MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'baas'),
     AngularFireDatabaseModule,
     AngularFireAuthModule
-
-
   ],
   providers: [BoardService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [VoteComponent]
 })
 export class AppModule { }
