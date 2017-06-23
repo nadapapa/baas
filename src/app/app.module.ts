@@ -15,7 +15,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdToolbarModule} from '@angular/material';
 
-
+import { MaterialModule } from "@angular/material";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -45,7 +45,8 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     MdToolbarModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

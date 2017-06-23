@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit() {
   }
