@@ -11,13 +11,12 @@
       <md-icon>dashboard</md-icon>
       <span>Tábláim</span>
     </a>
-    <button md-menu-item>
+    <button md-menu-item (click)="logout()">
       <md-icon>power_settings_new</md-icon>
-      <span (click)="logout()">Kilépés</span>
+      <span>Kilépés</span>
     </button>
   </md-menu>
   <h1 class="mat-headline">{{title}}</h1>
 </md-toolbar>
-
 
 <router-outlet></router-outlet>
