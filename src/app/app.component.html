@@ -1,5 +1,18 @@
-<md-toolbar>
-  {{title}}
+<md-toolbar color="primary">
+  <button md-icon-button [mdMenuTriggerFor]="menu" color="primary">
+    <md-icon>menu</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item>
+      <md-icon>list</md-icon>
+      <span>Adatlapom</span>
+    </button>
+    <button md-menu-item>
+      <md-icon>power_settings_new</md-icon>
+      <span>Kilépés</span>
+    </button>
+  </md-menu>
+  <h1 class="mat-headline">{{title}}</h1>
 </md-toolbar>
 
 <router-outlet></router-outlet>

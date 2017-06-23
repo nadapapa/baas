@@ -13,7 +13,7 @@ import { BoardComponent } from './board/board.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdToolbarModule} from '@angular/material';
+import {MdToolbarModule, MdMenuModule, MdIconModule} from '@angular/material';
 
 
 
@@ -45,6 +45,7 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     MdToolbarModule,
+      MdMenuModule, MdIconModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
