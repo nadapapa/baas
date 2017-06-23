@@ -9,9 +9,13 @@ import { BoardService } from '../board.service';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private BoardService: BoardService) { }
+  private boardItems = [];
+
+  constructor(private BoardService: BoardService) { console.log('construct'); }
 
   ngOnInit() {
-    this.BoardService.getBoards().map(data => console.log(data));
+    console.log('before');
+    this.BoardService.getBoards().map(data => this.boardItems = data).subscribe();
+    console.log('after');
   }
 }
