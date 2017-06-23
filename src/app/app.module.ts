@@ -13,7 +13,12 @@ import { BoardComponent } from './board/board.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule, MdListModule, MdCardModule, MdGridListModule } from '@angular/material';
+import {
+  MdToolbarModule, MdMenuModule,
+  MdIconModule, MdButtonModule,
+  MdDialogModule,
+  MdListModule, MdCardModule, MdInputModule,
+  MdGridListModule, MdSnackBarModule} from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -28,6 +33,7 @@ import { EventService } from './event.service';
 
 import { VoteService } from './vote.service';
 import { AuthGuard } from './auth.guard';
+
 
 const appRoutes: Routes = [
   { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
@@ -49,13 +55,15 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     TestComponent,
     VoteComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule, MdCardModule, MdListModule, MdGridListModule,
+    MdToolbarModule, MdMenuModule,
+    MdIconModule, MdButtonModule, MdDialogModule, MdCardModule, MdListModule, MdGridListModule, MdSnackBarModule, MdInputModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'baas-6228b'),
     AngularFireDatabaseModule,

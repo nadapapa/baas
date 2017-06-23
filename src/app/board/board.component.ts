@@ -14,6 +14,7 @@ import {EventService} from '../event.service';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
+
   private board;
 
   constructor(private BoardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
@@ -28,6 +29,11 @@ export class BoardComponent implements OnInit {
   }
 
   private openVote(email: string) {
-    const dialogRef = this.dialog.open(VoteComponent, {data: {board: this.board, email: email}, width: '80%'});
+    this.dialog.open(VoteComponent, {data: {board: this.board, email: email, dialogRef: this.dialog}, width: '80%'});
   }
+
+
+
+
+
 }

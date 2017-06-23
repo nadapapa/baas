@@ -1,21 +1,34 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import {Observable} from 'rxjs/Observable';
+import {MdSnackBar} from '@angular/material';
+import { MdDialog } from '@angular/material';
+
 
 @Injectable()
 export class VoteService {
+  updateableHash: string;
 
   private votes;
 
-  constructor(public af: AngularFireDatabase) {
+  constructor(public af: AngularFireDatabase, public snackBar: MdSnackBar, public dialog: MdDialog) {
     this.votes = this.af.list('/votes');
   }
 
   public saveVote(vote) {
-    console.log(vote);
-    this.votes.push(vote);
 
+    let a = this.votes.push(vote).then((item) => {
+      this.updateableHash = item.key;
+      this.snackBar.open('Szavazatodat elmentettük!', 'OK', {
+        duration: 10000,
+      });
+    });
   }
+
+
+
+
+
 
   public getVotes(boardId) {
     return this.votes;

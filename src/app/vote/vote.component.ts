@@ -14,9 +14,7 @@ export class VoteComponent implements OnInit {
 
 
   constructor(@Inject(MD_DIALOG_DATA) public data: any, private VoteService: VoteService, public afAuth: AngularFireAuth) {
-    this.afAuth.authState.subscribe(user => {
-      this.sender_email = user.email
-    });
+    this.afAuth.authState.subscribe(user => { this.sender_email = user.email; });
   }
 
   ngOnInit() {
@@ -24,17 +22,18 @@ export class VoteComponent implements OnInit {
   }
 
   private castAVote(index) {
-    console.log(index);
+
     this.VoteService.saveVote(
-        {
+    {
           'board': this.data.board.$key,
           'category': index,
           'description': '',
           'from': this.sender_email,
           'to': this.data.email,
           'create_time': new Date().toLocaleString('hu-HU', {hour12: false})
-  }
+        }
     );
+
 
   }
 }
