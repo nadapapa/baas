@@ -34,10 +34,18 @@ export class VoteService {
     return this.votes;
   }
 
+  public getByEmail(email) {
+    return this.votes.map(voteList => {
+      return voteList.filter(item => item.from === email || item.to === email);
+    });
+  }
+
   public getGroupedVotes(boardId) {
     return this.votes.map(voteList => {
       const filtered = voteList.filter(item => item.board === boardId);
       const grouped = {};
+      let votePercentage = 0;
+
       filtered.forEach(item => {
         if (grouped.hasOwnProperty(item.to)) {
           if (grouped[item.to].hasOwnProperty(item.category)) {
@@ -49,36 +57,22 @@ export class VoteService {
           grouped[item.to] = {};
           grouped[item.to][item.category] = 1;
         }
+      let sum = 0;
+      for (
+      const key in grouped [item.to]) {
+          if (grouped[item.to].hasOwnProperty(key)) {
+            sum +=grouped[item.to][key];
+          }
+            }
+          if (sum > votePercentage) {
+        votePercentage = sum;
+        }
       });
-      return grouped;
+
+      return {
+        'users': grouped,
+        'votePercentage': 100 / votePercentage
+      };
     });
   }
-
-  /*
-  public getByEmailBoard(boardId, votes) {
-      const filtered = votes.filter(item => item.board === boardId);
-      const grouped = {};
-      filtered.forEach(item => {
-        if (grouped.hasOwnProperty(item.to)) {
-          if (grouped[item.to].hasOwnProperty(item.category)) {
-            grouped[item.to][item.category] += 1;
-          } else {
-            grouped[item.to][item.category] = 1;
-          }
-        } else {
-          grouped[item.to] = {};
-          grouped[item.to][item.category] = 1;
-        }
-      });
-      console.log(grouped);
-/*
-    return {
-      'votePercentage': 4.5,
-      'votes': {
-        0: 10,
-        1: 21
-      }
-    };
-
-  }*/
 }
