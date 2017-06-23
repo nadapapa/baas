@@ -15,7 +15,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule, MdListModule, MdCardModule, MdGridListModule } from '@angular/material';
 
-import { Observable } from 'rxjs/Observable';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
@@ -25,19 +24,17 @@ import { environment } from '../environments/environment';
 
 import { BoardService } from './board.service';
 import { VoteComponent } from './vote/vote.component';
+import { EventService } from './event.service';
 
 import { VoteService } from './vote.service';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
-  { path: 'test', component: TestComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'me', component: MeComponent },
-  { path: 'boards', component: BoardListComponent },
-  { path: 'boards/:id', component: BoardComponent },
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
+  { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
+  { path: 'me', component: MeComponent, canActivate: [AuthGuard] },
+  { path: 'boards', component: BoardListComponent, canActivate: [AuthGuard] },
+  { path: 'boards/:id', component: BoardComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginComponent, pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -65,7 +62,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule
 
   ],
-  providers: [BoardService, VoteService],
+  providers: [BoardService, EventService, VoteService, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [VoteComponent],
 })
