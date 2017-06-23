@@ -1,5 +1,5 @@
-<md-toolbar [hidden]="!isLoggedIn"  ng-hide="isLoggedIn" color="primary">
-  <button md-icon-button [mdMenuTriggerFor]="menu">
+<md-toolbar  ng-hide="isLoggedIn" color="primary">
+  <button *ngIf="isLoggedIn" md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>menu</md-icon>
   </button>
   <md-menu #menu="mdMenu">

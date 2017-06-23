@@ -35,16 +35,23 @@ export class AppComponent implements OnInit {
   public logout() {
     this.afAuth.auth.signOut();
     this.setUserParams();
+    this.user = null;
     this.router.navigateByUrl('/');
   }
 
   setUserParams() {
-      this.afAuth.authState.subscribe(user => {
-        this.userProfile.name = user.displayName;
-        this.userProfile.img = user.photoURL;
-      });
 
-      this.isLoggedIn = true;
+      this.afAuth.authState.subscribe(user => {
+        if (user) {
+          this.userProfile.name = user.displayName;
+          this.userProfile.img = user.photoURL;
+          this.isLoggedIn = true;
+        } else {
+          this.userProfile.name = null;
+          this.userProfile.img = null;
+          this.isLoggedIn = false;
+        }
+      });
   }
 
 }
