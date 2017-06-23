@@ -23,6 +23,8 @@ export class VoteService {
     return this.votes.map(voteList => {
       const filtered = voteList.filter(item => item.board === boardId);
       const grouped = {};
+      let votePercentage = 0;
+
       filtered.forEach(item => {
         if (grouped.hasOwnProperty(item.to)) {
           if (grouped[item.to].hasOwnProperty(item.category)) {
@@ -34,8 +36,24 @@ export class VoteService {
           grouped[item.to] = {};
           grouped[item.to][item.category] = 1;
         }
+        let sum = 0;
+        console.log(grouped[item.to]);
+
+
+        for (const key in grouped[item.to]) {
+          if (grouped[item.to].hasOwnProperty(key)) {
+            sum += grouped[item.to][key];
+          }
+        }
+        if (sum > votePercentage) {
+          votePercentage = sum;
+        }
       });
-      return grouped;
+
+      return {
+        'users': grouped,
+        'votePercentage': 100 / votePercentage
+      };
     });
   }
 
