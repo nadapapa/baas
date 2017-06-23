@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - '6.9'
+
+install: npm install
+
+env:
+  global:
+  - ENCRYPTION_LABEL: "cf5025c6aa15"
+  - COMMIT_AUTHOR_EMAIL: "nadapapa@gmail.com"
+
+before_script:
+- ./node_modules/@angular/cli/bin/ng build
+
+script: bash ./gh-deploy.sh
