@@ -26,6 +26,8 @@ import { environment } from '../environments/environment';
 import { BoardService } from './board.service';
 import { VoteComponent } from './vote/vote.component';
 
+import { VoteService } from './vote.service';
+
 const appRoutes: Routes = [
   { path: 'test', component: TestComponent },
   { path: 'login', component: LoginComponent },
@@ -61,9 +63,10 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'baas-6228b'),
     AngularFireDatabaseModule,
     AngularFireAuthModule
+
   ],
-  providers: [BoardService],
+  providers: [BoardService, VoteService],
   bootstrap: [AppComponent],
-  entryComponents: [VoteComponent]
+  entryComponents: [VoteComponent],
 })
 export class AppModule { }
