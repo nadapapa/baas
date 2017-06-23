@@ -1,0 +1,8 @@
+<div>
+  <div *ngFor="let category of categories; let i = index"
+       [style.background]="category.color"
+       [style.width.%]="(votes && votes[i] ? (votes[i] * percentage) : 0)"
+       style="height:1em;float:left;" mdTooltip="{{category.name}}"
+    class="c">
+  </div>
+</div>

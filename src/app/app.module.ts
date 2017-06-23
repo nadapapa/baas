@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -13,7 +13,12 @@ import { BoardComponent } from './board/board.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule, MdListModule, MdCardModule, MdGridListModule } from '@angular/material';
+import {
+  MdToolbarModule, MdMenuModule,
+  MdIconModule, MdButtonModule,
+  MdDialogModule,
+  MdListModule, MdCardModule, MdInputModule,
+  MdGridListModule, MdSnackBarModule, MdTooltipModule} from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -28,6 +33,8 @@ import { EventService } from './event.service';
 
 import { VoteService } from './vote.service';
 import { AuthGuard } from './auth.guard';
+import { VoteProgressComponent } from './vote-progress/vote-progress.component';
+
 
 const appRoutes: Routes = [
   { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
@@ -48,14 +55,16 @@ const appRoutes: Routes = [
     BoardComponent,
     PageNotFoundComponent,
     TestComponent,
-    VoteComponent
+    VoteComponent,
+    VoteProgressComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdDialogModule, MdCardModule, MdListModule, MdGridListModule,
+    MdToolbarModule, MdMenuModule,
+    MdIconModule, MdButtonModule, MdDialogModule, MdCardModule, MdListModule, MdGridListModule, MdSnackBarModule, MdInputModule, MdTooltipModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'baas-6228b'),
     AngularFireDatabaseModule,
@@ -65,5 +74,8 @@ const appRoutes: Routes = [
   providers: [BoardService, EventService, VoteService, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [VoteComponent],
+  schemas: [
+      NO_ERRORS_SCHEMA
+  ]
 })
 export class AppModule { }
