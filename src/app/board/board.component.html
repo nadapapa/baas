@@ -1,8 +1,14 @@
-<md-list>
-  <div *ngFor="let user of board?.users" (click)="openVote(user.email)">
-    <md-list-item>
-      {{user.name}}
-    </md-list-item>
-    <md-divider></md-divider>
-  </div>
-</md-list>
+<div>
+  <md-list>
+    <div *ngFor="let user of board?.users" (click)="openVote(user.email)">
+      <md-list-item>
+        {{user.name}}
+      </md-list-item>
+      <md-divider></md-divider>
+    </div>
+  </md-list>
+
+  <p *ngIf="adminUser?.email == userEmail">
+    <button md-raised-button class="md-warn" (click)="archiveBt(board.$key)" >{{board?.name}} lezárása </button>
+  </p>
+</div>
