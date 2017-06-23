@@ -18,7 +18,7 @@ import {
   MdIconModule, MdButtonModule,
   MdDialogModule,
   MdListModule, MdCardModule, MdInputModule,
-  MdGridListModule, MdSnackBarModule} from '@angular/material';
+  MdGridListModule, MdSnackBarModule, MdTooltipModule} from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -64,7 +64,7 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     MdToolbarModule, MdMenuModule,
-    MdIconModule, MdButtonModule, MdDialogModule, MdCardModule, MdListModule, MdGridListModule, MdSnackBarModule, MdInputModule,
+    MdIconModule, MdButtonModule, MdDialogModule, MdCardModule, MdListModule, MdGridListModule, MdSnackBarModule, MdInputModule, MdTooltipModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'baas-6228b'),
     AngularFireDatabaseModule,
