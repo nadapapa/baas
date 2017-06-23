@@ -27,13 +27,14 @@ import { VoteComponent } from './vote/vote.component';
 import { EventService } from './event.service';
 
 import { VoteService } from './vote.service';
+import AuthGuard from './auth.guard';
 
 const appRoutes: Routes = [
-  { path: 'test', component: TestComponent },
+  { path: 'test', component: TestComponent, canActivate: [AuthGuard]  },
   { path: 'login', component: LoginComponent },
-  { path: 'me', component: MeComponent },
-  { path: 'boards', component: BoardListComponent },
-  { path: 'boards/:id', component: BoardComponent },
+  { path: 'me', component: MeComponent, canActivate: [AuthGuard]  },
+  { path: 'boards', component: BoardListComponent, canActivate: [AuthGuard]  },
+  { path: 'boards/:id', component: BoardComponent, canActivate: [AuthGuard]  },
   { path: '',
     redirectTo: '/login',
     pathMatch: 'full'
@@ -65,7 +66,7 @@ const appRoutes: Routes = [
     AngularFireAuthModule
 
   ],
-  providers: [BoardService, EventService, VoteService],
+  providers: [BoardService, EventService, VoteService, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [VoteComponent],
 })
