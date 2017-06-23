@@ -13,7 +13,7 @@ import { BoardComponent } from './board/board.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule} from '@angular/material';
+import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule, MdListModule} from '@angular/material';
 
 import { Observable } from 'rxjs/Observable';
 import { AngularFireModule } from 'angularfire2';
@@ -54,7 +54,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule,
+    MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule,MdListModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'baas'),
     AngularFireDatabaseModule,

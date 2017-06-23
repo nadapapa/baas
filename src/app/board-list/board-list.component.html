@@ -1,3 +1,11 @@
-<p>
-  board-list works!
-</p>
+<h3 class="mat-subheader" md-subheader>Táblák</h3>
+<md-list>
+
+  <a md-button *ngFor="let board of boards;let i = index;" href="/board/{{i}}"><md-list-item>{{board.name}}</md-list-item><md-divider></md-divider></a>
+
+
+
+</md-list>
+
+
+
