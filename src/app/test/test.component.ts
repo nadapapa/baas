@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../board.service';
-
+import { VoteService } from '../vote.service';
 
 @Component({
   selector: 'app-test',
@@ -10,12 +10,27 @@ import { BoardService } from '../board.service';
 export class TestComponent implements OnInit {
 
   private boardItems = [];
+  private votes = [];
+  private emailData = null;
 
-  constructor(private BoardService: BoardService) { console.log('construct'); }
+  public vote = {
+    'from': 'test',
+    'to': '',
+    'board': null,
+    'category': null,
+    'description': '',
+  };
+
+  constructor(private BoardService: BoardService, private VoteService: VoteService) { console.log('construct'); }
 
   ngOnInit() {
-    console.log('before');
     this.BoardService.getBoards().map(data => this.boardItems = data).subscribe();
-    console.log('after');
+    this.VoteService.getGroupedVotes(0).map(data => {
+      this.votes = data;
+    }).subscribe(console.log);
+  }
+
+  saveVote() {
+    this.VoteService.saveVote(this.vote);
   }
 }
