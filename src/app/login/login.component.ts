@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(public afAuth: AngularFireAuth, router: Router) {
     this.user = afAuth.authState;
 
-    if(this.afAuth.authState.map(data => !!data)) {
+    if (this.afAuth.authState.map(data => !!data)) {
       router.navigate(['/boards']);
     }
   }

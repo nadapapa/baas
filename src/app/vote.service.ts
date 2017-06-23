@@ -21,6 +21,12 @@ export class VoteService {
     return this.votes;
   }
 
+  public getByEmail(email) {
+    return this.votes.map(voteList => {
+      return voteList.filter(item => item.from === email || item.to === email);
+    });
+  }
+
   public getGroupedVotes(boardId) {
     return this.votes.map(voteList => {
       const filtered = voteList.filter(item => item.board === boardId);
@@ -38,14 +44,15 @@ export class VoteService {
           grouped[item.to] = {};
           grouped[item.to][item.category] = 1;
         }
-        let sum = 0;
-        for (const key in grouped[item.to]) {
+      let sum = 0;
+      for (
+      const key in grouped [item.to]) {
           if (grouped[item.to].hasOwnProperty(key)) {
-            sum += grouped[item.to][key];
+            sum +=grouped[item.to][key];
           }
-        }
-        if (sum > votePercentage) {
-          votePercentage = sum;
+            }
+          if (sum > votePercentage) {
+        votePercentage = sum;
         }
       });
 

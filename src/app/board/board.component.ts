@@ -28,9 +28,10 @@ export class BoardComponent implements OnInit {
     this.route.params
         .subscribe((params: Params) => {
           this.BoardService.getBoard(params['id']).subscribe(data => this.board = data);
-          this.VoteService.getVotes(params['id']).subscribe(data => this.votes = data);
           this.VoteService.getGroupedVotes(params['id']).subscribe(data => this.groupedVotes = data);
         });
+
+
   }
 
   private openVote(email: string) {
