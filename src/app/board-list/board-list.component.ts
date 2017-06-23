@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../board.service';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import {AfoListObservable } from 'angularfire2-offline/database';
 import {EventService} from '../event.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {EventService} from '../event.service';
   styleUrls: ['./board-list.component.css']
 })
 export class BoardListComponent implements OnInit {
-  boards: FirebaseListObservable<any[]>;
+  boards;
 
   constructor(private BoardService: BoardService, private eventService: EventService) {
     this.eventService.emitChange({title: 'Táblák'});

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
+  title = 'Login';
   user: Observable<firebase.User>;
 
   constructor(public afAuth: AngularFireAuth, router: Router) {

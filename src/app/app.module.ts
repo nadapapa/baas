@@ -21,8 +21,9 @@ import {
   MdGridListModule, MdSnackBarModule, MdTooltipModule} from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireOfflineModule } from 'angularfire2-offline';
 
 import { TestComponent } from './test/test.component';
 import { environment } from '../environments/environment';
@@ -64,10 +65,14 @@ const appRoutes: Routes = [
     HttpModule,
     BrowserAnimationsModule,
     MdToolbarModule, MdMenuModule,
-    MdIconModule, MdButtonModule, MdDialogModule, MdCardModule, MdListModule, MdGridListModule, MdSnackBarModule, MdInputModule, MdTooltipModule,
+    MdIconModule, MdButtonModule,
+    MdDialogModule, MdCardModule,
+    MdListModule, MdGridListModule,
+    MdSnackBarModule, MdInputModule, MdTooltipModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase, 'baas-6228b'),
     AngularFireDatabaseModule,
+    AngularFireOfflineModule,
     AngularFireAuthModule
 
   ],

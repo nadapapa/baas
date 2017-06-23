@@ -9,9 +9,10 @@ import { VoteService } from '../vote.service';
 })
 export class TestComponent implements OnInit {
 
-  private boardItems = [];
-  private votes = [];
+  public boardItems = [];
+  public votes = [];
   private emailData = null;
+  ev;
 
   public vote = {
     'from': 'test',

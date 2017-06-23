@@ -18,7 +18,7 @@ import {VoteService} from '../vote.service';
 })
 export class BoardComponent implements OnInit {
 
-  private board;
+  public board;
   private votes;
   private groupedVotes;
 
@@ -44,9 +44,4 @@ export class BoardComponent implements OnInit {
   private openVote(email: string) {
     this.dialog.open(VoteComponent, {data: {board: this.board, email: email, dialogRef: this.dialog}, width: '80%'});
   }
-
-
-
-
-
 }

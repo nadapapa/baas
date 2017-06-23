@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import {Observable} from 'rxjs/Observable';
+import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 import {MdSnackBar} from '@angular/material';
 import { MdDialog } from '@angular/material';
 
@@ -11,7 +10,7 @@ export class VoteService {
 
   private votes;
 
-  constructor(public af: AngularFireDatabase, public snackBar: MdSnackBar, public dialog: MdDialog) {
+  constructor(public af: AngularFireOfflineDatabase, public snackBar: MdSnackBar, public dialog: MdDialog) {
     this.votes = this.af.list('/votes');
   }
 
@@ -24,11 +23,6 @@ export class VoteService {
       });
     });
   }
-
-
-
-
-
 
   public getVotes(boardId) {
     return this.votes;
