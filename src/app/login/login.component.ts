@@ -3,6 +3,8 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,16 +15,16 @@ export class LoginComponent implements OnInit {
 
   user: Observable<firebase.User>;
 
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(public afAuth: AngularFireAuth, router: Router) {
     this.user = afAuth.authState;
+
+    if(this.user) {
+      router.navigate(['/boards']);
+    }
   }
 
   login() {
     this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
-  }
-
-  public logout() {
-    this.afAuth.auth.signOut();
   }
 
   ngOnInit() {
