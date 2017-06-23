@@ -11,7 +11,4 @@ env:
   - ENCRYPTION_LABEL: "cf5025c6aa15"
   - COMMIT_AUTHOR_EMAIL: "nadapapa@gmail.com"
 
-before_script:
-- ./node_modules/@angular/cli/bin/ng build
-
 script: bash ./gh-deploy.sh
