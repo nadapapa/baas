@@ -4,6 +4,8 @@ import { MdDialog } from '@angular/material';
 
 import { BoardService } from '../board.service';
 
+import { VoteProgressComponent } from '../vote-progress/vote-progress.component';
+import 'rxjs/add/operator/switchMap';
 import { VoteComponent } from '../vote/vote.component';
 import {EventService} from '../event.service';
 import {VoteService} from '../vote.service';
@@ -27,12 +29,16 @@ export class BoardComponent implements OnInit {
     this.EventService.emitChange({title: 'Felhasználók'});
 
     this.route.params
-        .subscribe((params: Params) => {
-          this.BoardService.getBoard(params['id']).subscribe(data => this.board = data);
-          this.VoteService.getGroupedVotes(params['id']).subscribe(data => this.groupedVotes = data);
-        });
+        .switchMap((params: Params) => this.BoardService.getBoard(params['id']))
+        .subscribe(data => this.board = data);
+    this.route.params
+        .switchMap((params: Params) => this.VoteService.getGroupedVotes(params['id']))
+        .subscribe(data => this.votes = data);
+  }
 
-
+  public getVotesProgressBar(email) {
+    console.log(this.votes.users['email']);
+    return email;
   }
 
   private openVote(email: string) {

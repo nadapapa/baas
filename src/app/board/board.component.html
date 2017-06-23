@@ -1,7 +1,14 @@
 <md-list>
   <div *ngFor="let user of board?.users" (click)="openVote(user.email)">
     <md-list-item>
-      {{user.name}}
+      <h3 md-line>{{user.name}}</h3>
+      <p md-line>
+        <app-vote-progress *ngIf="votes"
+                [votes]="this.votes?.users[user.email]"
+                [categories]="board.categories"
+                [percentage]="votes?.votePercentage">
+        </app-vote-progress>
+      </p>
     </md-list-item>
     <md-divider></md-divider>
   </div>

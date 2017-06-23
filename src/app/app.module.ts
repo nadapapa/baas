@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
@@ -33,6 +33,7 @@ import { EventService } from './event.service';
 
 import { VoteService } from './vote.service';
 import { AuthGuard } from './auth.guard';
+import { VoteProgressComponent } from './vote-progress/vote-progress.component';
 
 
 const appRoutes: Routes = [
@@ -54,8 +55,8 @@ const appRoutes: Routes = [
     BoardComponent,
     PageNotFoundComponent,
     TestComponent,
-    VoteComponent
-
+    VoteComponent,
+    VoteProgressComponent
   ],
   imports: [
     BrowserModule,
@@ -73,5 +74,8 @@ const appRoutes: Routes = [
   providers: [BoardService, EventService, VoteService, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [VoteComponent],
+  schemas: [
+      NO_ERRORS_SCHEMA
+  ]
 })
 export class AppModule { }
