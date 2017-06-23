@@ -11,4 +11,7 @@ env:
   - ENCRYPTION_LABEL: "cf5025c6aa15"
   - COMMIT_AUTHOR_EMAIL: "nadapapa@gmail.com"
 
+before_script:
+- npm install promise-polyfill --save-exact
+
 script: bash ./gh-deploy.sh

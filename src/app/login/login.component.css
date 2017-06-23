@@ -5,3 +5,18 @@
 .login-full-width {
     width: 100%;
 }
+
+#google {
+    border: 1px solid #95989A;
+    background: #fff  url('../../assets/images/google.svg') no-repeat 25px;
+    background-size: 25px;
+    height: 50px;
+    padding-left: 60px;
+    padding-right: 25px;
+}
+
+@media (max-width: 600px) {
+    #google {
+        background: #fff;
+    }
+}

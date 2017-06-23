@@ -1,7 +1,10 @@
-{{title}} jujjju
+{{title}}
 
 <div align="center">
   <h2>Belépés</h2>
 
-<button md-raised-button>Google Login</button>
+  <p> {{ (user | async)?.email }} </p>
+
+  <button (click)="login()" id="google">Login With Google</button>
+
 </div>
