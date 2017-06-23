@@ -12,6 +12,10 @@ import { BoardListComponent } from './board-list/board-list.component';
 import { BoardComponent } from './board/board.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MdToolbarModule} from '@angular/material';
+
+
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -39,6 +43,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
+    MdToolbarModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
