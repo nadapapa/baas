@@ -12,7 +12,9 @@ export class VoteService {
   }
 
   public saveVote(vote) {
+    console.log(vote);
     this.votes.push(vote);
+
   }
 
   public getVotes(boardId) {
