@@ -24,7 +24,7 @@ export class MeComponent implements OnInit {
 
   ngOnInit() {
     this.BoardService.getBoards().map(data => this.boardItems = data).subscribe();
-    this.VoteService.getByEmail('balazs.kovacs@bigfish.hu').map(data => {
+    this.VoteService.getByEmail(this.userEmail).map(data => {
       this.votes = data;
     }).subscribe();
   }
