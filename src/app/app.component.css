@@ -1,0 +1,19 @@
+.inline {
+    width: 100%;
+    text-align: right;
+}
+
+.inline div {
+    display: inline;
+}
+
+.profile-name {
+    padding-top: 5px;
+}
+
+.profile-picture {
+    max-height: 40px;
+    max-width: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
