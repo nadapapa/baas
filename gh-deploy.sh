@@ -6,7 +6,7 @@ TARGET_BRANCH="gh-pages"
 
 function doCompile {
   echo "ng build -prod";
-  ./node_modules/@angular/cli/bin/ng build -e prod --deploy-url /baas --base-href /baas
+  ./node_modules/@angular/cli/bin/ng build --deploy-url /baas/ --base-href /baas/
 }
 
 # Pull requests and commits to other branches shouldn't try to deploy, just build to verify
