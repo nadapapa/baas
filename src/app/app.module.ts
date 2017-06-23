@@ -15,9 +15,18 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule} from '@angular/material';
 
-import { MaterialModule } from "@angular/material";
+import { Observable } from 'rxjs/Observable';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule, AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireAuthModule, AngularFireAuth } from 'angularfire2/auth';
+
+import { TestComponent } from './test/test.component';
+import { environment } from '../environments/environment';
+
+import { BoardService } from './board.service';
 
 const appRoutes: Routes = [
+  { path: 'test', component: TestComponent },
   { path: 'login', component: LoginComponent },
   { path: 'me', component: MeComponent },
   { path: 'boards', component: BoardListComponent },
@@ -37,17 +46,23 @@ const appRoutes: Routes = [
     MeComponent,
     BoardListComponent,
     BoardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MdToolbarModule,
-    RouterModule.forRoot(appRoutes)
+    MdToolbarModule, MdMenuModule, MdIconModule, MdButtonModule,
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebase, 'baas'),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
+
+
   ],
-  providers: [],
+  providers: [BoardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
