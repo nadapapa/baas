@@ -27,18 +27,14 @@ import { VoteComponent } from './vote/vote.component';
 import { EventService } from './event.service';
 
 import { VoteService } from './vote.service';
-import AuthGuard from './auth.guard';
+import { AuthGuard } from './auth.guard';
 
 const appRoutes: Routes = [
-  { path: 'test', component: TestComponent, canActivate: [AuthGuard]  },
-  { path: 'login', component: LoginComponent },
-  { path: 'me', component: MeComponent, canActivate: [AuthGuard]  },
-  { path: 'boards', component: BoardListComponent, canActivate: [AuthGuard]  },
-  { path: 'boards/:id', component: BoardComponent, canActivate: [AuthGuard]  },
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
-  },
+  { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
+  { path: 'me', component: MeComponent, canActivate: [AuthGuard] },
+  { path: 'boards', component: BoardListComponent, canActivate: [AuthGuard] },
+  { path: 'boards/:id', component: BoardComponent, canActivate: [AuthGuard] },
+  { path: '', component: LoginComponent, pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent }
 ];
 

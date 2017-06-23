@@ -4,7 +4,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 
 @Injectable()
-export default class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
 
     private can: boolean = false;
 
@@ -16,7 +16,7 @@ export default class AuthGuard implements CanActivate {
             let fakka = !!data;
 
             if (fakka) {
-                this.router.navigate(['/boards'])
+                //this.router.navigate(['/boards'])
             }
             return fakka;
 
