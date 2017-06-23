@@ -1,3 +1,5 @@
-<p>
-  vote works!
-</p>
+<button md-mini-fab [md-dialog-close]="true"><md-icon>close</md-icon></button>
+<md-grid-list cols="2" rowHeight="4:1">
+  <md-grid-tile (click)="castAVote(i);" *ngFor="let category of data.board.categories; let i = index; let last = last" [style.background]="category.color" colspan="{{last && data.board.categories.length % 2 == 1 ? 2 : 1}}">{{category.name}}</md-grid-tile>
+
+</md-grid-list>

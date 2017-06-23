@@ -1,0 +1,13 @@
+
+
+md-grid-tile:hover {
+    filter: brightness(110%);
+    cursor: pointer;
+}
+
+button {
+    float: right;
+    z-index: 2;
+    top: -20px;
+    right: -20px;
+}

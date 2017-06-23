@@ -24,6 +24,6 @@ export class BoardComponent implements OnInit {
   }
 
   private openVote(email: string) {
-    const dialogRef = this.dialog.open(VoteComponent, {data: {board: this.board, email: email}});
+    const dialogRef = this.dialog.open(VoteComponent, {data: {board: this.board, email: email}, width: '80%'});
   }
 }
