@@ -11,7 +11,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class MeComponent implements OnInit {
 
   private boardItems = [];
-  private votes = [];
+  public votes = [];
   private user = null;
   private userEmail = '';
 

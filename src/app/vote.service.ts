@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import {Observable} from 'rxjs/Observable';
+import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 import {MdSnackBar} from '@angular/material';
 import { MdDialog } from '@angular/material';
 
@@ -11,7 +10,7 @@ export class VoteService {
 
   private votes;
 
-  constructor(public af: AngularFireDatabase, public snackBar: MdSnackBar, public dialog: MdDialog) {
+  constructor(public af: AngularFireOfflineDatabase, public snackBar: MdSnackBar, public dialog: MdDialog) {
     this.votes = this.af.list('/votes');
   }
 
@@ -24,11 +23,6 @@ export class VoteService {
       });
     });
   }
-
-
-
-
-
 
   public getVotes(boardId) {
     return this.votes;
@@ -75,4 +69,38 @@ export class VoteService {
       };
     });
   }
+
+  public getVotesByBoard(boardId) {
+    return this.votes.map(voteList => {
+      const filtered = voteList.filter(item => item.board == boardId);
+      var data = new Date().toLocaleString('hu-HU', {hour12: false});
+
+      data = data.replace(/\s+/g, '_');
+      data = data.replace(/\./g,'');
+      data = data.replace(/\:/g,'-');
+
+      var archivedVotes = this.af.list('/archivedVotes/'+data);
+      archivedVotes.push(filtered);
+
+      filtered.forEach(item => {
+        console.log(item.$key);
+        this.votes.remove(item.$key);
+      });
+
+    });
+  }
+
+  public archiveVotesByBoard(id: number) {
+    var votes2;
+    console.log(id);
+
+    this.getVotesByBoard(id).map(data => {
+      votes2 = data;
+      return data;
+    }).subscribe(console.log);
+
+    console.log(votes2);
+    return ;
+  }
+
 }

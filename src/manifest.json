@@ -1,0 +1,15 @@
+{
+  "dir": "ltr",
+  "lang": "hu",
+  "name": "BaaS",
+  "scope": "/",
+  "display": "standalone",
+  "start_url": "./",
+  "short_name": "Baas",
+  "theme_color": "#3f51b5",
+  "description": "",
+  "orientation": "any",
+  "background_color": "ffffff",
+  "related_applications": [],
+  "prefer_related_applications": false
+}

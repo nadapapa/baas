@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
+import {AfoListObservable, AfoObjectObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class BoardService {
 
-  constructor(public af: AngularFireDatabase) {}
+  constructor(public af: AngularFireOfflineDatabase) {}
 
-  public getBoards(): FirebaseListObservable<any[]> {
+  public getBoards(): AfoListObservable<any[]> {
     return this.af.list('/boards');
   }
 
-  public getBoard(id: number): FirebaseObjectObservable<any[]> {
+  public getBoard(id: number): AfoObjectObservable<any[]> {
     return this.af.object('/boards/' + id);
   }
 }
