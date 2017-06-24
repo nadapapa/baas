@@ -12,7 +12,7 @@ import { AuthGuard } from './auth.guard';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title;
+  public title = '';
 
   user: Observable<firebase.User>;
   public isLoggedIn: boolean;
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
     this.user = afAuth.authState;
     this.eventService.changeEmitted$.subscribe(message => {
       this.title = typeof message.title === 'undefined' ? message.title : '';
+      console.log('event', this);
     });
 
     this.isLoggedIn = false;
