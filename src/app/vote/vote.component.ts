@@ -11,14 +11,14 @@ import { Observable } from 'rxjs/Observable';
 })
 export class VoteComponent implements OnInit {
   sender_email: string;
-
+  name: string;
 
   constructor(@Inject(MD_DIALOG_DATA) public data: any, private VoteService: VoteService, public afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => { this.sender_email = user.email; });
   }
 
   ngOnInit() {
-
+      this.name = this.data.name;
   }
 
   private castAVote(index) {
