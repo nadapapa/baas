@@ -1,4 +1,6 @@
-
+h4 {
+    margin: 0 0 10px 0;
+}
 
 md-grid-tile:hover {
     filter: brightness(110%);
@@ -8,7 +10,7 @@ md-grid-tile:hover {
  button {
     float: right;
     z-index: 2;
-    top: -20px;
+    top: -45px;
     right: -20px;
 }
 

@@ -47,8 +47,8 @@ export class BoardComponent implements OnInit {
         .subscribe(data => this.votes = data);
   }
 
-  private openVote(email: string) {
-    this.dialog.open(VoteComponent, {data: {board: this.board, email: email, dialogRef: this.dialog}, width: '80%'});
+  private openVote(email: string, name: string) {
+    this.dialog.open(VoteComponent, {data: {name: name, board: this.board, email: email, dialogRef: this.dialog}, width: '80%'});
   }
 
   archiveBt(id: number) {

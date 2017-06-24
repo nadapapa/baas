@@ -1,6 +1,6 @@
 <div>
   <md-list>
-    <div *ngFor="let user of board?.users" (click)="openVote(user.email)">
+    <div *ngFor="let user of board?.users" (click)="openVote(user.email, user.name)">
       <md-list-item>
         <h3 md-line>{{user.name}}</h3>
         <p md-line>
