@@ -1,1 +1,16 @@
-{}
+{
+  "routing": {
+    "index": "/index.html",
+    "routes": {
+      "/": {
+        "matchprefix": "exact"false
+      },
+      "/boards": {
+        "matchprefix": "prefix"true
+      },
+      "/me": {
+        "matchprefix": "exact"false
+      }
+    }
+  }
+}
