@@ -1,6 +1,7 @@
-<div>
+<md-card>
+  <h2 class="mat-headline">{{ board?.name }}</h2>
   <md-list>
-    <div *ngFor="let user of board?.users" (click)="openVote(user.email)">
+    <div *ngFor="let user of board?.users" (click)="openVote(user.email)" style="cursor: pointer;">
       <md-list-item>
         <h3 md-line>{{user.name}}</h3>
         <p md-line>
@@ -18,4 +19,4 @@
   <p *ngIf="adminUser?.email == userEmail">
     <button md-raised-button class="md-warn" (click)="archiveBt(board.$key)" >{{board?.name}} lezárása </button>
   </p>
-</div>
+</md-card>

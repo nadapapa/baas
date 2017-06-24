@@ -2,6 +2,7 @@
   <button *ngIf="isLoggedIn" md-icon-button [mdMenuTriggerFor]="menu">
     <md-icon>menu</md-icon>
   </button>
+  <h2 *ngIf="title">{{ title }}</h2>
   <md-menu #menu="mdMenu">
     <a md-menu-item href="/me">
       <md-icon>list</md-icon>
