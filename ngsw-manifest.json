@@ -3,13 +3,13 @@
     "index": "/index.html",
     "routes": {
       "/": {
-        "matchprefix": "exact"false
+        "prefix": false
       },
       "/boards": {
-        "matchprefix": "prefix"true
+        "prefix": true
       },
       "/me": {
-        "matchprefix": "exact"false
+        "prefix": false
       }
     }
   }
