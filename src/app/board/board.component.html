@@ -1,5 +1,5 @@
 <md-card>
-  <h2 class="mat-headline">{{ board?.name }}</h2>
+  <h2 class="mat-headline"><md-icon md-font-set="material-icons"> {{board?.icon}} </md-icon> {{ board?.name }}</h2>
   <md-list>
     <div *ngFor="let user of board?.users" (click)="openVote(user.email)" style="cursor: pointer;">
       <md-list-item>

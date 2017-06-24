@@ -1,7 +1,7 @@
 <h2 class="mat-headline" md-subheader>Táblák</h2>
 <md-list>
 
-  <a md-button *ngFor="let board of boards;let i = index;" href="/boards/{{i}}"><md-list-item>{{board.name}}</md-list-item><md-divider></md-divider></a>
+  <a md-button *ngFor="let board of boards;let i = index;" href="/boards/{{i}}"><md-list-item><md-icon md-font-set="material-icons"> {{board.icon}} </md-icon> {{board.name}}</md-list-item><md-divider></md-divider></a>
 
 
 
