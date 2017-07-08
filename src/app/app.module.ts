@@ -25,7 +25,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireOfflineModule } from 'angularfire2-offline';
 
-import { TestComponent } from './test/test.component';
 import { environment } from '../environments/environment';
 
 import { BoardService } from './board.service';
@@ -38,7 +37,6 @@ import { VoteProgressComponent } from './vote-progress/vote-progress.component';
 
 
 const appRoutes: Routes = [
-  { path: 'test', component: TestComponent, canActivate: [AuthGuard] },
   { path: 'me', component: MeComponent, canActivate: [AuthGuard] },
   { path: 'boards', component: BoardListComponent, canActivate: [AuthGuard] },
   { path: 'boards/:id', component: BoardComponent, canActivate: [AuthGuard] },
@@ -55,7 +53,6 @@ const appRoutes: Routes = [
     BoardListComponent,
     BoardComponent,
     PageNotFoundComponent,
-    TestComponent,
     VoteComponent,
     VoteProgressComponent
   ],
@@ -70,7 +67,7 @@ const appRoutes: Routes = [
     MdListModule, MdGridListModule,
     MdSnackBarModule, MdInputModule, MdTooltipModule,
     RouterModule.forRoot(appRoutes),
-    AngularFireModule.initializeApp(environment.firebase, 'baas-6228b'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireOfflineModule,
     AngularFireAuthModule

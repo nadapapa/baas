@@ -83,7 +83,6 @@ export class VoteService {
       archivedVotes.push(filtered);
 
       filtered.forEach(item => {
-        console.log(item.$key);
         this.votes.remove(item.$key);
       });
 
@@ -92,14 +91,12 @@ export class VoteService {
 
   public archiveVotesByBoard(id: number) {
     var votes2;
-    console.log(id);
 
     this.getVotesByBoard(id).map(data => {
       votes2 = data;
       return data;
-    }).subscribe(console.log);
+    });
 
-    console.log(votes2);
     return ;
   }
 
