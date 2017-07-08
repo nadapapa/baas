@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardService } from '../board.service';
-import { VoteService } from '../vote.service';
+import { BoardService } from '../../services/board.service';
+import { VoteService } from '../../services/vote.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
@@ -9,7 +9,6 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./me.component.css']
 })
 export class MeComponent implements OnInit {
-
   private boardItems = [];
   public votes = [];
   private user = null;
@@ -37,5 +36,4 @@ export class MeComponent implements OnInit {
   getDirection(vote) {
     return vote.from === this.userEmail ? 'call_made' : 'call_received';
   }
-
 }

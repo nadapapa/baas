@@ -1,9 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MD_DIALOG_DATA } from '@angular/material';
-import { VoteService } from '../vote.service';
+import { VoteService } from '../../services/vote.service';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
   templateUrl: './vote.component.html',
@@ -23,7 +21,7 @@ export class VoteComponent implements OnInit {
 
   public castAVote(index) {
     this.voteService.saveVote(
-    {
+        {
           'board': this.data.board.$key,
           'category': index,
           'description': '',

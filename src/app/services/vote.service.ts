@@ -3,7 +3,6 @@ import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
 import { MdSnackBar } from '@angular/material';
 import { MdDialog } from '@angular/material';
 
-
 @Injectable()
 export class VoteService {
   updateableHash: string;
@@ -98,5 +97,4 @@ export class VoteService {
 
     return;
   }
-
 }

@@ -1,20 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {EventService} from './event.service';
+import { EventService } from '../services/event.service';
 import { Router } from '@angular/router';
-import { AuthGuard } from './auth.guard';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   public title = '';
-
-  user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
   public isLoggedIn: boolean;
   public userProfile = {name: null, img: null};
 
@@ -28,10 +26,6 @@ export class AppComponent implements OnInit {
     this.setUserParams();
   }
 
-  ngOnInit() {
-
-  }
-
   public logout() {
     this.afAuth.auth.signOut();
     this.setUserParams();
@@ -40,7 +34,6 @@ export class AppComponent implements OnInit {
   }
 
   setUserParams() {
-
       this.afAuth.authState.subscribe(user => {
         if (user) {
           this.userProfile.name = user.displayName;
@@ -53,5 +46,4 @@ export class AppComponent implements OnInit {
         }
       });
   }
-
 }

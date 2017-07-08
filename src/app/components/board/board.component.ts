@@ -1,16 +1,13 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MdDialog } from '@angular/material';
-
-import { BoardService } from '../board.service';
-
-import { VoteProgressComponent } from '../vote-progress/vote-progress.component';
-import 'rxjs/add/operator/switchMap';
-import { VoteComponent } from '../vote/vote.component';
-import { EventService } from '../event.service';
-import { VoteService } from '../vote.service';
-
 import { AngularFireAuth } from 'angularfire2/auth';
+import 'rxjs/add/operator/switchMap';
+
+import { VoteComponent } from '../vote/vote.component';
+import { EventService } from '../../services/event.service';
+import { VoteService } from '../../services/vote.service';
+import { BoardService } from '../../services/board.service';
 
 @Component({
   selector: 'app-board',
@@ -18,16 +15,13 @@ import { AngularFireAuth } from 'angularfire2/auth';
   styleUrls: ['./board.component.css']
 })
 export class BoardComponent implements OnInit {
-
   public board;
   public userEmail;
   public adminUser;
   public votes;
-  public groupedVotes;
 
   constructor(private boardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
               private eventService: EventService, private voteService: VoteService, public afAuth: AngularFireAuth) {
-
     afAuth.authState.map(user => {
       this.userEmail = user.email;
     }).subscribe();

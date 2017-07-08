@@ -1,24 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './app.component';
+import { AppComponent } from './components/app.component';
 
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { MeComponent } from './me/me.component';
-import { BoardListComponent } from './board-list/board-list.component';
-import { BoardComponent } from './board/board.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './components/login/login.component';
+import { MeComponent } from './components/me/me.component';
+import { BoardListComponent } from './components/board-list/board-list.component';
+import { BoardComponent } from './components/board/board.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { VoteProgressComponent } from './components/vote-progress/vote-progress.component';
+import { VoteComponent } from './components/vote/vote.component';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdToolbarModule, MdMenuModule,
   MdIconModule, MdButtonModule,
   MdDialogModule,
   MdListModule, MdCardModule, MdInputModule,
-  MdGridListModule, MdSnackBarModule, MdTooltipModule} from '@angular/material';
+  MdGridListModule, MdSnackBarModule, MdTooltipModule } from '@angular/material';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -27,13 +29,10 @@ import { AngularFireOfflineModule } from 'angularfire2-offline';
 
 import { environment } from '../environments/environment';
 
-import { BoardService } from './board.service';
-import { VoteComponent } from './vote/vote.component';
-import { EventService } from './event.service';
-
-import { VoteService } from './vote.service';
+import { BoardService } from './services/board.service';
+import { EventService } from './services/event.service';
+import { VoteService } from './services/vote.service';
 import { AuthGuard } from './auth.guard';
-import { VoteProgressComponent } from './vote-progress/vote-progress.component';
 
 
 const appRoutes: Routes = [
@@ -71,7 +70,6 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireOfflineModule,
     AngularFireAuthModule
-
   ],
   providers: [BoardService, EventService, VoteService, AuthGuard],
   bootstrap: [AppComponent],

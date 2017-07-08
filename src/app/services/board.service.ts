@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {AfoListObservable, AfoObjectObservable, AngularFireOfflineDatabase } from 'angularfire2-offline/database';
-import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class BoardService {

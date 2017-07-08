@@ -168,6 +168,12 @@
     magic-string "^0.19.0"
     source-map "^0.5.6"
 
+"@reactivex/rxjs@^5.4.2":
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/@reactivex/rxjs/-/rxjs-5.4.2.tgz#ab530dbbdab71071369828ef11c8d7ae558d5116"
+  dependencies:
+    symbol-observable "^1.0.1"
+
 "@types/jasmine@2.5.52":
   version "2.5.52"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.52.tgz#6ea5435d5c71562296e63ef27a4718f94f2fbb13"
@@ -4339,7 +4345,7 @@ rx-lite@*, rx-lite@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
 
-rxjs@^5.0.1, rxjs@^5.1.0:
+rxjs@^5.0.1:
   version "5.4.2"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-5.4.2.tgz#2a3236fcbf03df57bae06fd6972fd99e5c08fcf7"
   dependencies:

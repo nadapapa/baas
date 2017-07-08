@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BoardService } from '../board.service';
-import {AfoListObservable } from 'angularfire2-offline/database';
-import {EventService} from '../event.service';
+import { BoardService } from '../../services/board.service';
+import {EventService} from '../../services/event.service';
 
 @Component({
   selector: 'app-board-list',
@@ -9,7 +8,7 @@ import {EventService} from '../event.service';
   styleUrls: ['./board-list.component.css']
 })
 export class BoardListComponent implements OnInit {
-  boards;
+  public boards;
 
   constructor(private boardService: BoardService, private eventService: EventService) {
     this.eventService.emitChange({title: 'Táblák'});
@@ -18,5 +17,4 @@ export class BoardListComponent implements OnInit {
   ngOnInit() {
     this.boardService.getBoards().map(data => this.boards = data).subscribe();
   }
-
 }
