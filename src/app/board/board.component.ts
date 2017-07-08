@@ -22,38 +22,36 @@ export class BoardComponent implements OnInit {
   public board;
   public userEmail;
   public adminUser;
-  private votes;
-  private groupedVotes;
+  public votes;
+  public groupedVotes;
 
-  constructor(private BoardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
-              private EventService: EventService, private VoteService: VoteService, public afAuth: AngularFireAuth) {
+  constructor(private boardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
+              private eventService: EventService, private voteService: VoteService, public afAuth: AngularFireAuth) {
 
     afAuth.authState.map(user => {
       this.userEmail = user.email;
     }).subscribe();
   }
 
-  ngOnInit(): void {
-    this.EventService.emitChange({title: 'Felhasználók'});
+  public ngOnInit(): void {
+    this.eventService.emitChange({title: 'Felhasználók'});
 
     this.route.params
-        .switchMap((params: Params) => this.BoardService.getBoard(params['id']))
+        .switchMap((params: Params) => this.boardService.getBoard(params['id']))
         .subscribe(data => {
           this.board = data;
-          this.adminUser = this.board.users.filter( item => (item.email == this.userEmail && item.is_admin == true))[0];
+          this.adminUser = this.board.users.filter( item => (item.email === this.userEmail && item.is_admin === true))[0];
         });
     this.route.params
-        .switchMap((params: Params) => this.VoteService.getGroupedVotes(params['id']))
+        .switchMap((params: Params) => this.voteService.getGroupedVotes(params['id']))
         .subscribe(data => this.votes = data);
   }
 
-  private openVote(email: string, name: string) {
+  public openVote(email: string, name: string) {
     this.dialog.open(VoteComponent, {data: {name: name, board: this.board, email: email, dialogRef: this.dialog}, width: '80%'});
   }
 
-  archiveBt(id: number) {
-    this.VoteService.archiveVotesByBoard(id);
+  public archiveBt(id: number) {
+    this.voteService.archiveVotesByBoard(id);
   }
-
-
 }

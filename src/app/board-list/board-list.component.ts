@@ -11,12 +11,12 @@ import {EventService} from '../event.service';
 export class BoardListComponent implements OnInit {
   boards;
 
-  constructor(private BoardService: BoardService, private eventService: EventService) {
+  constructor(private boardService: BoardService, private eventService: EventService) {
     this.eventService.emitChange({title: 'Táblák'});
   }
 
   ngOnInit() {
-    this.BoardService.getBoards().map(data => this.boards = data).subscribe();
+    this.boardService.getBoards().map(data => this.boards = data).subscribe();
   }
 
 }

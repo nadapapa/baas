@@ -6,20 +6,19 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-    private can: boolean = false;
+    private can = false;
 
-    constructor(public afAuth: AngularFireAuth, private router: Router) {
-    }
-    
+    constructor(public afAuth: AngularFireAuth, private router: Router) {}
+
     canActivate() {
         return this.afAuth.authState.map(data => {
-            let fakka = !!data;
+            const tmp = !!data;
 
-            if (!fakka) {
+            if (!tmp) {
                 this.router.navigate(['/'])
             }
-            return fakka;
 
+            return tmp;
         });
 
     }

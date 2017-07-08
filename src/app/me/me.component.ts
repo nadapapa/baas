@@ -15,7 +15,7 @@ export class MeComponent implements OnInit {
   private user = null;
   private userEmail = '';
 
-  constructor(public afAuth: AngularFireAuth, private BoardService: BoardService, private VoteService: VoteService) {
+  constructor(public afAuth: AngularFireAuth, private boardService: BoardService, private voteService: VoteService) {
     afAuth.authState.map(user => {
       this.userEmail = user.email;
       this.user = user;
@@ -23,8 +23,8 @@ export class MeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.BoardService.getBoards().map(data => this.boardItems = data).subscribe();
-    this.VoteService.getByEmail(this.userEmail).map(data => {
+    this.boardService.getBoards().map(data => this.boardItems = data).subscribe();
+    this.voteService.getByEmail(this.userEmail).map(data => {
       this.votes = data;
     }).subscribe();
   }
