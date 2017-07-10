@@ -42,7 +42,9 @@ export class BoardComponent implements OnInit {
   }
 
   public openVote(email: string, name: string) {
-    this.dialog.open(VoteComponent, {data: {name: name, board: this.board, email: email, dialogRef: this.dialog}, width: '80%'});
+    if (email !== this.userEmail) {
+      this.dialog.open(VoteComponent, {data: {name: name, board: this.board, email: email, dialogRef: this.dialog}, width: '80%'});
+    }
   }
 
   public archiveBt(id: number) {

@@ -20,15 +20,17 @@ export class VoteComponent implements OnInit {
   }
 
   public castAVote(index) {
-    this.voteService.saveVote(
-        {
-          'board': this.data.board.$key,
-          'category': index,
-          'description': '',
-          'from': this.sender_email,
-          'to': this.data.email,
-          'create_time': new Date().toLocaleString('hu-HU', {hour12: false})
-        }
-    );
+      if (this.sender_email !== this.data.email) {
+          this.voteService.saveVote(
+              {
+                  'board': this.data.board.$key,
+                  'category': index,
+                  'description': '',
+                  'from': this.sender_email,
+                  'to': this.data.email,
+                  'create_time': new Date().toLocaleString('hu-HU', {hour12: false})
+              }
+          );
+      }
   }
 }
