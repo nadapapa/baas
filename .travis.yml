@@ -12,7 +12,7 @@ before_script:
 
 script:
   - npm run ng lint
-  - npm run ng build --prod
+  - npm run prod
 
 deploy:
   skip_cleanup: true
