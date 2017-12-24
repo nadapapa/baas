@@ -1,14 +1,14 @@
-<md-card>
+<mat-card>
   <h2 class="mat-headline">Adatlapom</h2>
-  <md-list>
+  <mat-list>
     <div *ngFor="let vote of votes">
-      <md-list-item [style.background]="boardItems[vote.board]['categories'][vote.category].color">
-        <h3 md-line>{{ boardItems[vote.board].name}}</h3>
-        <h4 md-line>{{ boardItems[vote.board]['categories'][vote.category].name}}</h4>
+      <mat-list-item [style.background]="boardItems[vote.board]['categories'][vote.category].color">
+        <h3 mat-line>{{ boardItems[vote.board].name}}</h3>
+        <h4 mat-line>{{ boardItems[vote.board]['categories'][vote.category].name}}</h4>
         <span>{{ getUserName(vote)}}</span>
-        <md-icon>{{ getDirection(vote)}}</md-icon>
-      </md-list-item>
-      <md-divider></md-divider>
+        <mat-icon>{{ getDirection(vote)}}</mat-icon>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
-  </md-list>
-</md-card>
+  </mat-list>
+</mat-card>

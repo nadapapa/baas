@@ -1,6 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MdDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
 import 'rxjs/add/operator/switchMap';
 
@@ -20,7 +20,7 @@ export class BoardComponent implements OnInit {
   public adminUser;
   public votes;
 
-  constructor(private boardService: BoardService, private route: ActivatedRoute, public dialog: MdDialog,
+  constructor(private boardService: BoardService, private route: ActivatedRoute, public dialog: MatDialog,
               private eventService: EventService, private voteService: VoteService, public afAuth: AngularFireAuth) {
     afAuth.authState.map(user => {
       this.userEmail = user.email;
@@ -31,11 +31,12 @@ export class BoardComponent implements OnInit {
     this.eventService.emitChange({title: 'Felhasználók'});
 
     this.route.params
-        .switchMap((params: Params) => this.boardService.getBoard(params['id']))
+        .switchMap((params: Params) => this.boardService.getBoard(params['id']).valueChanges())
         .subscribe(data => {
           this.board = data;
           this.adminUser = this.board.users.filter( item => (item.email === this.userEmail && item.is_admin === true))[0];
         });
+
     this.route.params
         .switchMap((params: Params) => this.voteService.getGroupedVotes(params['id']))
         .subscribe(data => this.votes = data);

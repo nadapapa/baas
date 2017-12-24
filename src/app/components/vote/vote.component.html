@@ -1,6 +1,7 @@
 <h4>{{data.name}}</h4>
-<button md-mini-fab [md-dialog-close]="true"><md-icon>close</md-icon></button>
-<md-grid-list cols="2" rowHeight="4:1">
-  <md-grid-tile (click)="castAVote(i);" *ngFor="let category of data.board.categories; let i = index; let last = last" [style.background]="category.color" colspan="{{last && data.board.categories.length % 2 == 1 ? 2 : 1}}"><button [md-dialog-close]="true">{{category.name}}</button></md-grid-tile>
-
-</md-grid-list>
+<button mat-mini-fab class="close-button" [mat-dialog-close]="true"><mat-icon>close</mat-icon></button>
+<mat-grid-list cols="2" rowHeight="4:1">
+  <mat-grid-tile (click)="castAVote(i);" *ngFor="let category of data.board.categories; let i = index; let last = last" [style.background]="category.color" [colspan]="last && data.board.categories.length % 2 == 1 ? 2 : 1">
+    <button mat-button [mat-dialog-close]="true">{{category.name}}</button>
+  </mat-grid-tile>
+</mat-grid-list>

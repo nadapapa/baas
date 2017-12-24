@@ -22,7 +22,7 @@ export class MeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.boardService.getBoards().map(data => this.boardItems = data).subscribe();
+    this.boardService.getBoards().valueChanges().map(data => this.boardItems = data).subscribe();
     this.voteService.getByEmail(this.userEmail).map(data => {
       this.votes = data;
     }).subscribe();

@@ -1,0 +1,63 @@
+{
+  "index": "/index.html",
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "resources": {
+      "files": [
+        "/index.html"
+      ],
+      "versionedFiles": [
+        "/*.bundle.css",
+        "/*.bundle.js",
+        "/*.chunk.js"
+      ]
+    }
+  }, {
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/**"
+      ]
+    }
+  },{
+    "name": "fonts",
+    "resources": {
+      "urls": [
+        "https://fonts.googleapis.com/**",
+        "https://fonts.gstatic.com/**"
+      ]
+    }
+  }, {
+    "name": "favicon",
+    "resources": {
+      "urls": [
+        "http://new.bigfish.hu/wp-content/uploads/2016/06/bf_logo_small-filled-color-1.png"
+      ]
+    }
+  }],
+  "dataGroups": [{
+    "name": "api-freshness",
+    "urls": [
+      "/votes"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "1h",
+      "timeout": "10s",
+      "strategy": "freshness"
+    }
+  }, {
+    "name": "api-performance",
+    "urls": [
+      "/boards"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "1d",
+      "strategy": "performance"
+    }
+  }]
+}
