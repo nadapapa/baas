@@ -1,28 +1,28 @@
-<md-toolbar  ng-hide="isLoggedIn" color="primary">
-  <button *ngIf="isLoggedIn" md-icon-button [mdMenuTriggerFor]="menu">
-    <md-icon>menu</md-icon>
+<mat-toolbar  ng-hide="isLoggedIn" color="primary">
+  <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>menu</mat-icon>
   </button>
   <h2 *ngIf="title">{{ title }}</h2>
-  <md-menu #menu="mdMenu">
-    <a md-menu-item href="/me">
-      <md-icon>list</md-icon>
+  <mat-menu #menu="matMenu">
+    <a mat-menu-item href="/me">
+      <mat-icon>list</mat-icon>
       <span>Adatlapom</span>
     </a>
-    <a md-menu-item href="/boards">
-      <md-icon>dashboard</md-icon>
+    <a mat-menu-item href="/boards">
+      <mat-icon>dashboard</mat-icon>
       <span>Tábláim</span>
     </a>
-    <button md-menu-item (click)="logout()">
-      <md-icon>power_settings_new</md-icon>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon>
       <span>Kilépés</span>
     </button>
-  </md-menu>
+  </mat-menu>
   <h1 class="mat-headline"></h1>
 
   <div [hidden]="!isLoggedIn" class="inline" layout="row" layout-wrap>
     <div class="profile-name">{{userProfile.name}}</div>
     <div><img class="profile-picture" src="{{userProfile.img}}" /></div>
   </div>
-</md-toolbar>
+</mat-toolbar>
 
 <router-outlet></router-outlet>

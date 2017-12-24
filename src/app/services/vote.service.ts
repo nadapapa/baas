@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import { AngularFireOfflineDatabase } from 'angularfire2-offline/database';
-import { MdSnackBar } from '@angular/material';
-import { MdDialog } from '@angular/material';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class VoteService {
   updateableHash: string;
+  private votes: AngularFireList<any>;
 
-  private votes;
-
-  constructor(public af: AngularFireOfflineDatabase, public snackBar: MdSnackBar, public dialog: MdDialog) {
-    this.votes = this.af.list('/votes');
+  constructor(public af: AngularFireDatabase, public snackBar: MatSnackBar, public dialog: MatDialog) {
+    this.votes = this.af.list<any>('/votes');
   }
 
   public saveVote(vote) {
-
     const a = this.votes.push(vote).then((item) => {
       this.updateableHash = item.key;
       this.snackBar.open('Szavazatodat elmentettük!', 'OK', {
@@ -23,19 +22,20 @@ export class VoteService {
     });
   }
 
-  public getVotes(boardId) {
-    return this.votes;
+  public getVotes(): Observable<any> {
+    return this.votes.valueChanges();
   }
 
-  public getByEmail(email) {
-    return this.votes.map(voteList => {
+  public getByEmail(email): Observable<any> {
+    return this.votes.valueChanges().map(voteList => {
       return voteList.filter(item => item.from === email || item.to === email);
     });
   }
 
-  public getGroupedVotes(boardId) {
-    return this.votes.map(voteList => {
-      const filtered = voteList.filter(item => item.board === boardId);
+  public getGroupedVotes(boardId: number): Observable<any> {
+    return this.votes.valueChanges().map(voteList => {
+      // debugger;
+      const filtered = voteList.filter(item => +item.board === +boardId);
       const grouped = {};
       let votePercentage = 0;
 
@@ -51,13 +51,12 @@ export class VoteService {
           grouped[item.to][item.category] = 1;
         }
       let sum = 0;
-      for (
-      const key in grouped [item.to]) {
-          if (grouped[item.to].hasOwnProperty(key)) {
-            sum += grouped[item.to][key];
-          }
-            }
-          if (sum > votePercentage) {
+      for (const key in grouped [item.to]) {
+        if (grouped[item.to].hasOwnProperty(key)) {
+          sum += grouped[item.to][key];
+        }
+      }
+      if (sum > votePercentage) {
         votePercentage = sum;
         }
       });
@@ -69,8 +68,8 @@ export class VoteService {
     });
   }
 
-  public getVotesByBoard(boardId) {
-    return this.votes.map(voteList => {
+  public getVotesByBoard(boardId): Observable<any> {
+    return this.votes.valueChanges().map(voteList => {
       const filtered = voteList.filter(item => item.board === boardId);
       let data = new Date().toLocaleString('hu-HU', {hour12: false});
 

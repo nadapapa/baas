@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../../services/board.service';
-import {EventService} from '../../services/event.service';
+import { EventService } from '../../services/event.service';
 
 @Component({
   selector: 'app-board-list',
@@ -15,6 +15,6 @@ export class BoardListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.boardService.getBoards().map(data => this.boards = data).subscribe();
+    this.boardService.getBoards().valueChanges().map(data => this.boards = data).subscribe();
   }
 }

@@ -1,22 +1,22 @@
-<md-card>
-  <h2 class="mat-headline"><md-icon md-font-set="material-icons"> {{board?.icon}} </md-icon> {{ board?.name }}</h2>
-  <md-list>
+<mat-card>
+  <h2 class="mat-headline"><mat-icon mat-font-set="material-icons"> {{board?.icon}} </mat-icon> {{ board?.name }}</h2>
+  <mat-list>
     <div *ngFor="let user of board?.users" (click)="openVote(user.email, user.name)" style="cursor: pointer;">
-      <md-list-item>
-        <h3 md-line>{{user.name}}</h3>
-        <p md-line>
+      <mat-list-item>
+        <h3 mat-line>{{user.name}}</h3>
+        <p mat-line>
           <app-vote-progress *ngIf="votes"
                   [votes]="this.votes?.users[user.email]"
                   [categories]="board.categories"
                   [percentage]="votes?.votePercentage">
           </app-vote-progress>
         </p>
-      </md-list-item>
-      <md-divider></md-divider>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </div>
-  </md-list>
+  </mat-list>
 
   <p *ngIf="adminUser?.email == userEmail">
-    <button md-raised-button class="md-warn" (click)="archiveBt(board.$key)" >{{board?.name}} lezárása </button>
+    <button mat-raised-button class="mat-warn" (click)="archiveBt(board.$key)" >{{board?.name}} lezárása </button>
   </p>
-</md-card>
+</mat-card>
