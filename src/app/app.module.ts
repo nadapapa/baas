@@ -30,6 +30,7 @@ import { environment } from '../environments/environment';
 import { BoardService } from './services/board.service';
 import { EventService } from './services/event.service';
 import { VoteService } from './services/vote.service';
+import { AuthService } from './services/auth.service';
 import { AuthGuard } from './auth.guard';
 
 
@@ -67,7 +68,7 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [BoardService, EventService, VoteService, AuthGuard],
+  providers: [BoardService, EventService, VoteService, AuthService, AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [VoteComponent],
   schemas: [

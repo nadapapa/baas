@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase/app';
 import { Router } from '@angular/router';
 
@@ -12,15 +12,15 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   user: Observable<firebase.User>;
 
-  constructor(public afAuth: AngularFireAuth, router: Router) {
-    this.user = afAuth.authState;
+  constructor(public authService: AuthService, router: Router) {
+    this.user = this.authService.authState;
 
-    if (this.afAuth.authState.map(data => !!data)) {
+    if (this.authService.authState.map(data => !!data)) {
       router.navigate(['/boards']);
     }
   }
 
   login() {
-    this.afAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
+    this.authService.googleSignIn();
   }
 }

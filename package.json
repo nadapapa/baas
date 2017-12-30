@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "./node_modules/@angular/cli/bin/ng",
-    "prod": "./node_modules/@angular/cli/bin/ng build -prod"
+    "prod": "./node_modules/@angular/cli/bin/ng build -prod",
+    "test": "./node_modules/@angular/cli/bin/ng test -sr",
+    "coverage": "./node_modules/@angular/cli/bin/ng test -sr -cc"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +25,7 @@
     "angularfire2": "5.0.0-rc.5-next",
     "core-js": "^2.4.1",
     "firebase": "4.8.0",
+    "firebase-tools": "^3.16.0",
     "promise-polyfill": "6.0.2",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.4"
@@ -38,6 +41,7 @@
     "jasmine-spec-reporter": "4.1.1",
     "karma": "1.7.0",
     "karma-chrome-launcher": "2.2.0",
+    "karma-firefox-launcher": "1.1.0",
     "karma-cli": "~1.0.1",
     "karma-coverage-istanbul-reporter": "1.3.0",
     "karma-jasmine": "~1.1.0",

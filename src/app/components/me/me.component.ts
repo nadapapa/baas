@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from '../../services/board.service';
 import { VoteService } from '../../services/vote.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-me',
@@ -14,8 +14,8 @@ export class MeComponent implements OnInit {
   private user = null;
   private userEmail = '';
 
-  constructor(public afAuth: AngularFireAuth, private boardService: BoardService, private voteService: VoteService) {
-    afAuth.authState.map(user => {
+  constructor(public authService: AuthService, private boardService: BoardService, private voteService: VoteService) {
+    authService.authState.map(user => {
       this.userEmail = user.email;
       this.user = user;
     }).subscribe();

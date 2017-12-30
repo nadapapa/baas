@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../../services/auth.service';
 import 'rxjs/add/operator/switchMap';
 
 import { VoteComponent } from '../vote/vote.component';
@@ -21,8 +21,8 @@ export class BoardComponent implements OnInit {
   public votes;
 
   constructor(private boardService: BoardService, private route: ActivatedRoute, public dialog: MatDialog,
-              private eventService: EventService, private voteService: VoteService, public afAuth: AngularFireAuth) {
-    afAuth.authState.map(user => {
+              private eventService: EventService, private voteService: VoteService, public authService: AuthService) {
+    authService.authState.map(user => {
       this.userEmail = user.email;
     }).subscribe();
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../services/auth.service';
 import { EventService } from '../services/event.service';
 import { Router } from '@angular/router';
 
@@ -16,10 +16,10 @@ export class AppComponent {
   public isLoggedIn: boolean;
   public userProfile = {name: null, img: null};
 
-  constructor(public afAuth: AngularFireAuth, private eventService: EventService, private router: Router) {
-    this.user = afAuth.authState;
+  constructor(public authService: AuthService, private eventService: EventService, private router: Router) {
+    this.user = authService.authState;
     this.eventService.changeEmitted$.subscribe(message => {
-      this.title = typeof message.title === 'undefined' ? message.title : '';
+      this.title = typeof message.title === 'undefined' ? '' : message.title;
     });
 
     this.isLoggedIn = false;
@@ -27,23 +27,17 @@ export class AppComponent {
   }
 
   public logout() {
-    this.afAuth.auth.signOut();
+    this.authService.signOut();
     this.setUserParams();
     this.user = null;
     this.router.navigateByUrl('/');
   }
 
   setUserParams() {
-      this.afAuth.authState.subscribe(user => {
-        if (user) {
-          this.userProfile.name = user.displayName;
-          this.userProfile.img = user.photoURL;
-          this.isLoggedIn = true;
-        } else {
-          this.userProfile.name = null;
-          this.userProfile.img = null;
-          this.isLoggedIn = false;
-        }
+      this.authService.authState.subscribe(user => {
+        this.userProfile.name = user.displayName ? user.displayName : null;
+        this.userProfile.img = user.photoURL ? user.photoURL : null;
+        this.isLoggedIn = user ? true : null;
       });
   }
 }

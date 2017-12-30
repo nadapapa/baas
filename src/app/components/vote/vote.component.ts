@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { VoteService } from '../../services/vote.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   templateUrl: './vote.component.html',
@@ -11,8 +11,8 @@ export class VoteComponent implements OnInit {
   sender_email: string;
   name: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private voteService: VoteService, public afAuth: AngularFireAuth) {
-    this.afAuth.authState.subscribe(user => { this.sender_email = user.email; });
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private voteService: VoteService, public authService: AuthService) {
+    this.authService.authState.subscribe(user => { this.sender_email = user.email; });
   }
 
   ngOnInit() {

@@ -8,12 +8,14 @@ module.exports = function (config) {
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
+      require('karma-firefox-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
     ],
     client:{
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+      clearContext: false, // leave Jasmine Spec Runner output visible in browser
+      codeCoverage: config.angularCli.codeCoverage
     },
     files: [
       { pattern: './src/test.ts', watched: false }
@@ -26,10 +28,17 @@ module.exports = function (config) {
     },
     coverageIstanbulReporter: {
       reports: [ 'html', 'lcovonly' ],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        statements: 80,
+        lines: 80,
+        branches: 80,
+        functions: 80
+      }
     },
     angularCli: {
-      environment: 'dev'
+      environment: 'dev',
+      app: config.angularCli.codeCoverage ? '1' : '0'
     },
     reporters: config.angularCli && config.angularCli.codeCoverage
               ? ['progress', 'coverage-istanbul']
@@ -38,7 +47,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless', 'FirefoxHeadless'],
     singleRun: false
   });
 };

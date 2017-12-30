@@ -1,22 +1,26 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AppComponent } from './app.component';
 import {
-    MdToolbarModule, MdMenuModule,
-    MdIconModule, MdButtonModule,
-    MdDialogModule,
-    MdListModule, MdCardModule, MdInputModule,
-    MdGridListModule, MdSnackBarModule, MdTooltipModule } from '@angular/material';
+    MatToolbarModule, MatMenuModule,
+    MatIconModule, MatButtonModule,
+    MatDialogModule,
+    MatListModule, MatCardModule, MatInputModule,
+    MatGridListModule, MatSnackBarModule, MatTooltipModule } from '@angular/material';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { FirebaseApp } from 'angularfire2';
-import * as Rx from 'rxjs/Rx';
+import { AuthService} from '../services/auth.service';
+import { EventService} from '../services/event.service';
+import { Router } from '@angular/router';
+import { Observable} from 'rxjs/Observable';
 
-class AngularFireAuthMock extends AngularFireAuth {
-    auth: Rx.Observable.of({uid: 'dgfdh', name: 'sdfsd'})
+class AuthServiceMock {
+  public authState;
+
+  constructor() {
+    this.authState = Observable.of({});
+  }
+
+  public signOut() {}
 }
-
-class FirebaseAppMock extends FirebaseApp {}
 
 describe('AppComponent', () => {
     let component: AppComponent;
@@ -26,15 +30,19 @@ describe('AppComponent', () => {
         TestBed.configureTestingModule({
             declarations: [ AppComponent ],
             imports: [
-                MdToolbarModule, MdMenuModule,
-                MdIconModule, MdButtonModule,
-                MdDialogModule, MdCardModule,
-                MdListModule, MdGridListModule,
-                MdSnackBarModule, MdInputModule, MdTooltipModule
+                MatToolbarModule, MatMenuModule,
+                MatIconModule, MatButtonModule,
+                MatDialogModule,
+                MatListModule, MatCardModule, MatInputModule,
+                MatGridListModule, MatSnackBarModule, MatTooltipModule,
             ],
             providers: [
-                { provide: AngularFireAuth, useClass: AngularFireAuthMock },
-                { provide: FirebaseApp, useClass: FirebaseAppMock },
+                { provide: AuthService, useClass: AuthServiceMock },
+                {
+                  provide: Router,
+                  useClass: class { navigateByUrl = jasmine.createSpy('navigateByUrl'); }
+                },
+              EventService
             ],
             schemas: [
                 NO_ERRORS_SCHEMA
@@ -49,7 +57,25 @@ describe('AppComponent', () => {
         fixture.detectChanges();
     });
 
-    it('should create', () => {
+    it('should create AppComponent', () => {
         expect(component).toBeTruthy();
     });
+
+  it('should not have the userProfile', () => {
+    expect(component.userProfile.name).toBeFalsy();
+  });
+
+  it('should change the title', () => {
+    const newTitle = 'new title';
+    expect(component.title).toEqual('');
+    const eventService = fixture.debugElement.injector.get(EventService);
+    eventService.emitChange({title: newTitle});
+    expect(component.title).toEqual(newTitle);
+  });
+
+  it('should log out', () => {
+    expect(component.user).toBeTruthy();
+    component.logout();
+    expect(component.user).toBeFalsy();
+  });
 });
