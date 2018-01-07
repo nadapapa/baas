@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { ErrorHandler, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './components/app.component';
-
+import * as Raven from 'raven-js';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MeComponent } from './components/me/me.component';
@@ -32,6 +32,17 @@ import { EventService } from './services/event.service';
 import { VoteService } from './services/vote.service';
 import { AuthGuard } from './auth.guard';
 
+if (environment.production) {
+  Raven
+    .config('https://d6124805fd244663a3f41d241162b755@sentry.io/267937')
+    .install();
+}
+
+  export class RavenErrorHandler implements ErrorHandler {
+    handleError(err: any): void {
+      Raven.captureException(err);
+    }
+  }
 
 const appRoutes: Routes = [
   { path: 'me', component: MeComponent, canActivate: [AuthGuard] },
@@ -67,7 +78,13 @@ const appRoutes: Routes = [
     AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
-  providers: [BoardService, EventService, VoteService, AuthGuard],
+  providers: [
+    BoardService,
+    EventService,
+    VoteService,
+    AuthGuard,
+    environment.production ? { provide: ErrorHandler, useClass: RavenErrorHandler } : []
+  ],
   bootstrap: [AppComponent],
   entryComponents: [VoteComponent],
   schemas: [
