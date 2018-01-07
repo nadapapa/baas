@@ -12,6 +12,7 @@ before_script:
 
 script:
   - npm run ng lint
+  - sed -i 's/'SHA'/'$TRAVIS_COMMIT'/' environment.prod.ts
   - npm run prod
 
 deploy:

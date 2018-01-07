@@ -12,5 +12,6 @@ export const environment = {
     projectId: 'baas-dev',
     storageBucket: 'baas-dev.appspot.com',
     messagingSenderId: '144406050312'
-  }
+  },
+  version: ''
 };
