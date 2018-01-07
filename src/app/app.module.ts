@@ -34,7 +34,9 @@ import { AuthGuard } from './auth.guard';
 
 if (environment.production) {
   Raven
-    .config('https://d6124805fd244663a3f41d241162b755@sentry.io/267937')
+    .config('https://d6124805fd244663a3f41d241162b755@sentry.io/267937', {
+      release: environment.version
+    })
     .install();
 }
 

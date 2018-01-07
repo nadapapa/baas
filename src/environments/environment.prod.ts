@@ -7,5 +7,6 @@ export const environment = {
     projectId: 'baas-6228b',
     storageBucket: 'baas-6228b.appspot.com',
     messagingSenderId: '232222307431'
-  }
+  },
+  version: 'SHA'
 };
