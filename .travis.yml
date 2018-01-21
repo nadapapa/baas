@@ -4,7 +4,9 @@ language: node_js
 node_js:
   - '6.9'
 
-install: npm install
+cache: yarn
+
+install: yarn
 
 before_script:
   - npm install promise-polyfill --save-exact
